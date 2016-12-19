@@ -1,0 +1,77 @@
+AT THIS POINT WE ARE IN THE NORMAL DIRECTORY (NOT THE .GIT)
+
+g++ .git/GitHook-master/commands/query.cpp .git/GitHook-master/commands/utils.cpp --std=c++11 -lmysqlclient -o query
+
+GO TO GITHUB WIKI AND SHOW WIKI PAGE
+
+./query -u brendabrandy -r https://github.com/brendabrandy/welcome-android.git --from 2016-12-16 -l 5
+
+echo "random words here" >> test1.txt
+echo "random words here2" >> test2.txt
+
+git add test1.txt test2.txt
+
+git commit -m "*new presentation tag* *wiki* presentation commit message"
+
+git push origin master
+
+GO TO GITHUB WIKI AND SHOW WIKI PAGE
+
+./query -u brendabrandy -r https://github.com/brendabrandy/welcome-android.git --from 2016-12-18 -l 5
+
+THERE SHOULD AT THIS POINT BE THE NEW COMMIT IN HERE!!!
+
+BRENDA IS GOING TO DO A FULL EXPORT NOW!!!
+
+g++ ./.git/GitHook-master/commands/exportwiki.cpp ./.git/GitHook-master/commands/utils.cpp -lmysqlclient -o exportwiki
+
+./exportwiki -r https://github.com/brendabrandy/welcome-android.git
+cat new.csv
+
+cat wiki/wiki.md
+
+THIS SHOULD NOW SHOW OUR WIKI.MD
+
+COPY ONE OF THE HASHES FROM HERE
+
+GO TO THE GITHUB WIKI AND SHOW THE COMMIT IS IN WIKI.MD
+
+g++ .git/GitHook-master/scripts/removeTagByHash.cpp -o removetagbyhash -lmysqlclient
+
+REPLACE THE A'S WITH THE HASH
+
+./removetagbyhash aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa wiki 
+
+cat wiki/wiki.md
+
+IT'S GONE! AND ITS GONE FROM THE DATABASE TOO!
+
+GO TO THE GITHUB WIKI AND SHOW THE COMMIT IS NOT IN WIKI.MD ANYMORE
+
+./query -u brendabrandy -r https://github.com/welcome-android/GitHook.git --from 2016-12-18 -l 5 -t wiki
+
+IT'S GONE! SEE!?!
+
+./query -u brendabrandy -r https://github.com/welcome-android/GitHook.git --from 2016-12-18 -l 5 -t wiki
+
+GO TO THE GITHUB WIKI AND SHOW THE COMMIT IS NOT IN TEST.MD
+
+LETS ADD A TAG BY HASH
+
+COPY PASTE THE HASH FROM ABOVE WITH THE A'S
+
+g++ .git/GitHook-master/commands/addTagByHash.cpp -o addtagbyhash -lmysqlclient
+
+./addtagbyhash aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa test
+
+LOOK NOW ITS IN THERE!!! WOOT WOOT!!!
+
+QUERY A LARGER REPOSITORY E.G.  
+
+
+NOTE:
+query file is changed
+removeTagByhash is changed
+add Tag by hash isn't tested yet
+remove tag by hash does not reomve the wiki fully -- the link is still there for some reason
+describe a repo
